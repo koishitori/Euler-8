@@ -18,35 +18,36 @@ var str = (function() {/*73167176531330624919225119674426574742355349194934
 84580156166097919133875499200524063689912560717606
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].split("\r\n");
+var len = 13;
 for(var i = 0; i < str.length; i++)
   str[i] = str[i].replace(/\s/g,"").split("");
 var max = 0;
-for(var i = 0; i < str.length - 13; i++ )
+for(var i = 0; i < str.length - len; i++ )
   for(var j = 0; j < str[ 0 ].length; j++){
     var temp = 1;
-    for( var k = 0; k < 13; k++)
+    for( var k = 0; k < len; k++)
       temp *= str[ i + k ][ j ];
     if( max < temp )
       max = temp;
   }
 for(var i = 0; i < str.length; i++ )
-  for(var j = 0; j < str[ 0 ].length - 13; j++){
+  for(var j = 0; j < str[ 0 ].length - len; j++){
     var temp = 1;
-    for( var k = 0; k < 13; k++)
+    for( var k = 0; k < len; k++)
       temp *= str[ i ][ j + k ];
     if( max < temp )
       max = temp;
   }
-for(var i = 0; i < str.length - 13; i++ )
-  for(var j = 0; j < str[ 0 ].length - 13; j++){
+for(var i = 0; i < str.length - len; i++ )
+  for(var j = 0; j < str[ 0 ].length - len; j++){
     var temp = 1;
-    for( var k = 0; k < 13; k++)
-      temp *= str[ i + k ][ j + k ];
+    for( var k = 0; k < len; k++)
+      temp *= str[ i + k ][ j - k ];
     if( max < temp )
       max = temp;
     temp = 1;
-    for( var k = 0; k < 13; k++)
-      temp *= str[ i + 13 - k ][ j + 13 - k ];
+    for( var k = 0; k < len; k++)
+      temp *= str[ i + len - k ][ j + len - k ];
     if( max < temp )
       max = temp;
   }
